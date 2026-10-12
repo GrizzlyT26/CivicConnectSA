@@ -124,6 +124,7 @@
             this.Name = "MainMenuForm";
             this.RightToLeftLayout = true;
             this.Text = "CivicConnect SA - Municipal Services";
+            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

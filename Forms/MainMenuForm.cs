@@ -49,12 +49,19 @@ namespace CivicConnectSA
 
         private void btnLocalEvents_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "Oops! This functionality is currently under development.\n\n" +
-                "Local Events & Announcements will be coming soon.",
-                "Coming Soon",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            using (LocalEventsForm eventsForm = new LocalEventsForm())
+            {
+                this.Hide();
+
+                eventsForm.ShowDialog();
+
+                this.Show();
+            }
+        }
+
+        private void MainMenuForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
