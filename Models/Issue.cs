@@ -17,6 +17,11 @@ namespace CivicConnectSA.Models
         public DateTime DateReported { get; set; }
 
         public string Status { get; set; }
+        public string SubmittedBy { get; set; }
+
+        public string LastUpdatedBy { get; set; }
+
+        public DateTime? LastUpdatedDate { get; set; }
 
     }
 }

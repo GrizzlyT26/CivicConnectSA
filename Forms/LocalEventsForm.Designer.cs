@@ -58,10 +58,10 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)), true);
+            this.lblTitle.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(361, 9);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(294, 24);
+            this.lblTitle.Size = new System.Drawing.Size(283, 22);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Local Events & Announcements";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -70,20 +70,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.Size = new System.Drawing.Size(147, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Search and Filter Events";
             // 
             // btnBack
             // 
+            this.btnBack.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnBack.Location = new System.Drawing.Point(445, 512);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(127, 23);
             this.btnBack.TabIndex = 2;
             this.btnBack.Text = "Back to Main Menu";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -97,6 +99,7 @@
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.btnClearFilters);
             this.panel1.Controls.Add(this.dtpToDate);
             this.panel1.Controls.Add(this.lblToDate);
@@ -115,12 +118,13 @@
             // 
             // btnClearFilters
             // 
+            this.btnClearFilters.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnClearFilters.Location = new System.Drawing.Point(821, 45);
             this.btnClearFilters.Name = "btnClearFilters";
             this.btnClearFilters.Size = new System.Drawing.Size(75, 23);
             this.btnClearFilters.TabIndex = 9;
             this.btnClearFilters.Text = "Clear Filters";
-            this.btnClearFilters.UseVisualStyleBackColor = true;
+            this.btnClearFilters.UseVisualStyleBackColor = false;
             // 
             // dtpToDate
             // 
@@ -132,36 +136,40 @@
             // lblToDate
             // 
             this.lblToDate.AutoSize = true;
+            this.lblToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToDate.Location = new System.Drawing.Point(552, 31);
             this.lblToDate.Name = "lblToDate";
-            this.lblToDate.Size = new System.Drawing.Size(44, 13);
+            this.lblToDate.Size = new System.Drawing.Size(51, 13);
             this.lblToDate.TabIndex = 6;
             this.lblToDate.Text = "To date";
             // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnSearch.Location = new System.Drawing.Point(740, 45);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 8;
             this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearch.Location = new System.Drawing.Point(3, 31);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(41, 13);
+            this.lblSearch.Size = new System.Drawing.Size(47, 13);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search";
             // 
             // lblFromDate
             // 
             this.lblFromDate.AutoSize = true;
+            this.lblFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFromDate.Location = new System.Drawing.Point(347, 31);
             this.lblFromDate.Name = "lblFromDate";
-            this.lblFromDate.Size = new System.Drawing.Size(54, 13);
+            this.lblFromDate.Size = new System.Drawing.Size(63, 13);
             this.lblFromDate.TabIndex = 4;
             this.lblFromDate.Text = "From date";
             // 
@@ -175,9 +183,10 @@
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
+            this.lblCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCategory.Location = new System.Drawing.Point(175, 31);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(49, 13);
+            this.lblCategory.Size = new System.Drawing.Size(57, 13);
             this.lblCategory.TabIndex = 2;
             this.lblCategory.Text = "Category";
             // 

@@ -222,7 +222,6 @@
             this.lblCharacterCount.Size = new System.Drawing.Size(66, 13);
             this.lblCharacterCount.TabIndex = 16;
             this.lblCharacterCount.Text = "0 characters";
-            
             // 
             // ReportIssuesForm
             // 
@@ -249,7 +248,7 @@
             this.Name = "ReportIssuesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Report Municipal Issue";
-            this.Load += new System.EventHandler(this.ReportIssuesForm_Load);
+            
             this.grpEngagement.ResumeLayout(false);
             this.grpEngagement.PerformLayout();
             this.ResumeLayout(false);

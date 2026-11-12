@@ -1,4 +1,5 @@
-﻿using CivicConnectSA.Helpers;
+﻿
+using CivicConnectSA.Helpers;
 using CivicConnectSA.Models;
 using System;
 using System.IO;
@@ -8,8 +9,6 @@ namespace CivicConnectSA.Forms
 {
     public partial class ReportIssuesForm : Form
     {
-        
-
         private string selectedFilePath = string.Empty;
 
         public ReportIssuesForm()
@@ -45,34 +44,20 @@ namespace CivicConnectSA.Forms
         {
             int progress = 0;
 
-            // Location = 30%
             if (!string.IsNullOrWhiteSpace(txtLocation.Text))
-            {
                 progress += 30;
-            }
 
-            // Category = 25%
             if (cmbCategory.SelectedIndex >= 0)
-            {
                 progress += 25;
-            }
 
-            // Description = 35%
             if (!string.IsNullOrWhiteSpace(rtbDescription.Text))
-            {
                 progress += 35;
-            }
 
-            // Attachment = 10%
-            // Attachment is optional, so it only adds extra progress.
             if (!string.IsNullOrWhiteSpace(selectedFilePath))
-            {
                 progress += 10;
-            }
 
             progressReport.Value = progress;
 
-            // Update the engagement message
             if (progress == 0)
             {
                 lblEngagement.Text =
@@ -94,11 +79,9 @@ namespace CivicConnectSA.Forms
 
         private void btnAttachFile_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog =
-                new OpenFileDialog())
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.Title =
-                    "Select Supporting File";
+                openFileDialog.Title = "Select Supporting File";
 
                 openFileDialog.Filter =
                     "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|" +
@@ -110,9 +93,10 @@ namespace CivicConnectSA.Forms
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
+                    FileInfo fileInfo =
+                        new FileInfo(openFileDialog.FileName);
 
-                    // Maximum attachment size: 10 MB
+                    // Maximum attachment size: 10 MB.
                     if (fileInfo.Length > 10 * 1024 * 1024)
                     {
                         MessageBox.Show(
@@ -129,16 +113,39 @@ namespace CivicConnectSA.Forms
 
                     lblSelectedFile.Text =
                         "Selected file: " +
-                        System.IO.Path.GetFileName(selectedFilePath);
+                        Path.GetFileName(selectedFilePath);
 
                     UpdateProgress();
                 }
             }
-            
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            // Only authenticated users can submit incidents.
+            if (!SessionContext.IsAuthenticated)
+            {
+                MessageBox.Show(
+                    "Please log in before submitting a municipal issue.",
+                    "Authentication Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            // Reporting is intended for citizen accounts.
+            if (SessionContext.UserRole != "Citizen")
+            {
+                MessageBox.Show(
+                    "Only citizen accounts can submit municipal issues.",
+                    "Access Restricted",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtLocation.Text))
             {
                 MessageBox.Show(
@@ -175,9 +182,22 @@ namespace CivicConnectSA.Forms
                 return;
             }
 
+            if (rtbDescription.Text.Length > 1000)
+            {
+                MessageBox.Show(
+                    "Your description cannot exceed 1000 characters.",
+                    "Description Too Long",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                rtbDescription.Focus();
+                return;
+            }
+
             string referenceNumber =
-                "CIV-" +
-                DateTime.Now.ToString("yyyyMMddHHmmss");
+                "CIV-" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+
+            DateTime submissionDate = DateTime.Now;
 
             Issue newIssue = new Issue
             {
@@ -186,17 +206,27 @@ namespace CivicConnectSA.Forms
                 Category = cmbCategory.SelectedItem.ToString(),
                 Description = rtbDescription.Text.Trim(),
                 AttachmentPath = selectedFilePath,
-                DateReported = DateTime.Now,
-                Status = "Submitted"
+                DateReported = submissionDate,
+
+                // Ownership tracking.
+                SubmittedBy = SessionContext.Username,
+
+                // Initial status.
+                Status = "Submitted",
+
+                LastUpdatedBy = SessionContext.Username,
+                LastUpdatedDate = submissionDate
             };
 
+            // Save to the shared issue collection.
             IssueDataStore.ReportedIssues.Add(newIssue);
 
             MessageBox.Show(
                 "Your municipal issue has been submitted successfully!\n\n" +
                 "Reference Number: " + referenceNumber + "\n" +
+                "Submitted By: " + SessionContext.Username + "\n" +
                 "Status: Submitted\n\n" +
-                "Thank you for helping improve services in your community.",
+                "You can track this request through Service Request Status.",
                 "Report Submitted",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -208,7 +238,7 @@ namespace CivicConnectSA.Forms
         {
             txtLocation.Clear();
 
-            lblCharacterCount.Text = "0 characters";
+            lblCharacterCount.Text = "0 / 1000 characters";
 
             cmbCategory.SelectedIndex = -1;
 
@@ -216,8 +246,7 @@ namespace CivicConnectSA.Forms
 
             selectedFilePath = string.Empty;
 
-            lblSelectedFile.Text =
-                "No file selected";
+            lblSelectedFile.Text = "No file selected";
 
             progressReport.Value = 0;
 
@@ -228,12 +257,7 @@ namespace CivicConnectSA.Forms
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void ReportIssuesForm_Load(object sender, EventArgs e)
-        {
-
+            Close();
         }
 
         private void txtLocation_TextChanged(object sender, EventArgs e)
@@ -241,21 +265,23 @@ namespace CivicConnectSA.Forms
             UpdateProgress();
         }
 
-        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbCategory_SelectedIndexChanged(
+            object sender, EventArgs e)
         {
             UpdateProgress();
         }
 
-        private void rtbDescription_TextChanged(object sender, EventArgs e)
+        private void rtbDescription_TextChanged(
+            object sender, EventArgs e)
         {
             UpdateProgress();
 
             int characterCount = rtbDescription.Text.Length;
 
             lblCharacterCount.Text =
-                 characterCount + " / 1000 characters";
+                characterCount + " / 1000 characters";
         }
 
-        
+
     }
 }

@@ -44,7 +44,8 @@ namespace CivicConnectSA
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            // Close the Main Menu and return to Login.
+            this.Close();
         }
 
         private void btnLocalEvents_Click(object sender, EventArgs e)
@@ -59,9 +60,6 @@ namespace CivicConnectSA
             }
         }
 
-        private void MainMenuForm_Load(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

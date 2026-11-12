@@ -40,10 +40,11 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(267, 36);
+            this.lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblTitle.Font = new System.Drawing.Font("Modern No. 20", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Strikeout))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(311, 30);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(234, 31);
+            this.lblTitle.Size = new System.Drawing.Size(212, 29);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "CivicConnect SA";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -52,7 +53,7 @@
             // 
             this.lblSubtitle.AutoSize = true;
             this.lblSubtitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtitle.Location = new System.Drawing.Point(285, 82);
+            this.lblSubtitle.Location = new System.Drawing.Point(313, 71);
             this.lblSubtitle.Name = "lblSubtitle";
             this.lblSubtitle.Size = new System.Drawing.Size(206, 18);
             this.lblSubtitle.TabIndex = 1;
@@ -61,7 +62,7 @@
             // 
             // lblEngagementMessage
             // 
-            this.lblEngagementMessage.Location = new System.Drawing.Point(285, 123);
+            this.lblEngagementMessage.Location = new System.Drawing.Point(313, 103);
             this.lblEngagementMessage.Name = "lblEngagementMessage";
             this.lblEngagementMessage.Size = new System.Drawing.Size(216, 45);
             this.lblEngagementMessage.TabIndex = 2;
@@ -70,42 +71,46 @@
             // 
             // btnReportIssues
             // 
+            this.btnReportIssues.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnReportIssues.Location = new System.Drawing.Point(27, 214);
             this.btnReportIssues.Name = "btnReportIssues";
             this.btnReportIssues.Size = new System.Drawing.Size(250, 50);
             this.btnReportIssues.TabIndex = 3;
             this.btnReportIssues.Text = "Report Issues";
-            this.btnReportIssues.UseVisualStyleBackColor = true;
+            this.btnReportIssues.UseVisualStyleBackColor = false;
             this.btnReportIssues.Click += new System.EventHandler(this.btnReportIssues_Click);
             // 
             // btnLocalEvents
             // 
+            this.btnLocalEvents.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnLocalEvents.Location = new System.Drawing.Point(288, 214);
             this.btnLocalEvents.Name = "btnLocalEvents";
             this.btnLocalEvents.Size = new System.Drawing.Size(250, 50);
             this.btnLocalEvents.TabIndex = 4;
             this.btnLocalEvents.Text = "Local Events & Announcements";
-            this.btnLocalEvents.UseVisualStyleBackColor = true;
+            this.btnLocalEvents.UseVisualStyleBackColor = false;
             this.btnLocalEvents.Click += new System.EventHandler(this.btnLocalEvents_Click);
             // 
             // btnServiceRequestStatus
             // 
+            this.btnServiceRequestStatus.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnServiceRequestStatus.Location = new System.Drawing.Point(544, 214);
             this.btnServiceRequestStatus.Name = "btnServiceRequestStatus";
             this.btnServiceRequestStatus.Size = new System.Drawing.Size(250, 50);
             this.btnServiceRequestStatus.TabIndex = 5;
             this.btnServiceRequestStatus.Text = "Service Request Status";
-            this.btnServiceRequestStatus.UseVisualStyleBackColor = true;
+            this.btnServiceRequestStatus.UseVisualStyleBackColor = false;
             this.btnServiceRequestStatus.Click += new System.EventHandler(this.btnServiceRequestStatus_Click);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnExit.Location = new System.Drawing.Point(364, 337);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(120, 33);
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "EXIIT";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // MainMenuForm
@@ -124,7 +129,6 @@
             this.Name = "MainMenuForm";
             this.RightToLeftLayout = true;
             this.Text = "CivicConnect SA - Municipal Services";
-            this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
